@@ -18,7 +18,22 @@ namespace API.Controllers
 
         //default get method
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers() => await context.Users.ToListAsync();
+        public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers() 
+        {
+            var users = await context.Users.ToListAsync();
+
+            if(!users.Any())
+                return new List<AppUser>
+                {
+                    new AppUser()
+                    {
+                        Id = 228,
+                        UserName = "Soullaft"
+                    }
+                };
+            
+            return users;
+        }
 
         //api/users/id
         [HttpGet("{id}")]
