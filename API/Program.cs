@@ -1,5 +1,6 @@
 using API.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+builder.Services.AddHttpsRedirection(options =>
+{
+    options.RedirectStatusCode = (int)HttpStatusCode.PermanentRedirect;
+    options.HttpsPort = 443;
 });
 builder.Services.AddControllers();
 builder.Services.AddCors();
@@ -26,7 +32,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors(policy =>{
-    policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200");
+    policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200");
 });
 
 app.UseAuthorization();
