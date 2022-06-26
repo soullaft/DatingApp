@@ -6,6 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
+    /// <summary>
+    /// Represents all actions with the users
+    /// </summary>
     public class UsersController : BaseApiController
     {
         private readonly DataContext context;

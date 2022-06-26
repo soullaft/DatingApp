@@ -8,15 +8,24 @@ namespace API.Extensions
 {
     public static class ApplicationServiceExtensions
     {
+        /// <summary>
+        /// Extension of configure all using application services
+        /// </summary>
         public static IServiceCollection AddAplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
+            //create data context depending on credentials in config file
             services.AddDbContext<DataContext>(options =>
             {
                 options.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
             });
+
+            #region DI
             
             services.AddScoped<ITokenService, TokenService>();
-
+            
+            #endregion
+            
+            //make all http request to redirect to https protocol
             services.AddHttpsRedirection(options =>
             {
                 options.RedirectStatusCode = (int)HttpStatusCode.PermanentRedirect;

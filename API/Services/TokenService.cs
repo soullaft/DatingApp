@@ -7,17 +7,27 @@ using System.Text;
 
 namespace API.Services
 {
+    /// <summary>
+    /// Token service
+    /// </summary>
     public class TokenService : ITokenService
     {
         private readonly SymmetricSecurityKey _securityKey;
 
         public TokenService(IConfiguration config)
         {
+            //get secret key in config file
             _securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
         }
 
+        /// <summary>
+        /// Create new token for specified user
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public string CreateToken(AppUser user)
         {
+            //list of claims
             var claims = new List<Claim>
             { 
                 new Claim(JwtRegisteredClaimNames.NameId, user.UserName)
@@ -25,6 +35,7 @@ namespace API.Services
 
             var creds = new SigningCredentials(_securityKey, SecurityAlgorithms.HmacSha512Signature);
 
+            //configure token behaviour
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
@@ -36,6 +47,7 @@ namespace API.Services
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
+            // return created token
             return tokenHandler.WriteToken(token);
         }
     }

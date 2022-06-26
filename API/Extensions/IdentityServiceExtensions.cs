@@ -6,6 +6,9 @@ namespace API.Extensions
 {
     public static class IdentityServiceExtensions
     {
+        /// <summary>
+        /// Extension of configure identities services in request pipeline
+        /// </summary>
         public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>

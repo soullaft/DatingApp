@@ -9,6 +9,9 @@ using System.Text;
 
 namespace API.Controllers
 {
+    /// <summary>
+    /// Register and login account controller
+    /// </summary>
     public class AccountController : BaseApiController
     {
         private readonly DataContext _context;
@@ -20,13 +23,19 @@ namespace API.Controllers
             _tokenService = tokenService;
         }
 
+        /// <summary>
+        /// Register new user
+        /// </summary>
+        /// <param name="registerDto"></param>
+        /// <returns></returns>
         [HttpPost("register")]
-
         public async Task<ActionResult<UserDto>> Register (RegisterDto registerDto)
         {
+            //if user is already exist throw an error
             if (await IsUserExist(registerDto.Username))
                 return BadRequest("Username is taken");
 
+            //create hmac with random key
             using var hmac = new HMACSHA512();
 
             var user = new AppUser
@@ -46,6 +55,11 @@ namespace API.Controllers
             };
         }
 
+        /// <summary>
+        /// Login user
+        /// </summary>
+        /// <param name="loginDto"></param>
+        /// <returns></returns>
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
@@ -71,6 +85,11 @@ namespace API.Controllers
             };
         }
 
+        /// <summary>
+        /// Is user with specified name already exist
+        /// </summary>
+        /// <param name="username">Username</param>
+        /// <returns></returns>
         private async Task<bool> IsUserExist(string username) => await _context.Users.AnyAsync(user => user.UserName == username.ToLower());
     }
 }

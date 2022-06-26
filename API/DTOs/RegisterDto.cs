@@ -2,6 +2,9 @@
 
 namespace API.DTOs
 {
+    /// <summary>
+    /// Represents register entity of the user
+    /// </summary>
     public class RegisterDto
     {
         [Required]

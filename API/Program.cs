@@ -8,13 +8,14 @@ builder.Services.AddIdentityServices(builder.Configuration);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// In case if we in development mode
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
+//make all our request firstly go through our exception middleware
 app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
