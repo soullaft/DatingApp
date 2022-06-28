@@ -17,6 +17,11 @@ namespace API.Middleware
             _hostEnvironment = hostEnvironment;
         }
 
+        /// <summary>
+        /// RequestDelegate can’t process requests without it
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public async Task InvokeAsync(HttpContext context)
         {
             try
@@ -41,10 +46,14 @@ namespace API.Middleware
             context.Response.ContentType = "appication/json";
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
+            //create response with parametres depending on our host configuration
             var response = _hostEnvironment.IsDevelopment()
                 ? new ApiException(context.Response.StatusCode, exception.Message, exception.StackTrace?.ToString())
                 : new ApiException(context.Response.StatusCode, "Internal Server Error");
 
+            SetSeverityException(ref response);
+
+            //set naming policy
             var options = new JsonSerializerOptions
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
@@ -53,6 +62,16 @@ namespace API.Middleware
             var json = JsonSerializer.Serialize(response, options);
 
             await context.Response.WriteAsync(json);
+        }
+
+        private void SetSeverityException(ref ApiException apiException)
+        {
+            switch (apiException.StatusCode)
+            {
+                case 500:
+                    apiException.Severity = Severity.Error;
+                    break;
+            }
         }
     }
 }
