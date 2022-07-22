@@ -1,7 +1,13 @@
 <ng-container >
     <button (click)="getServerError()" class="btn btn-outline-primary mr-3">Test server error</button>
-</ng-container>
-
-<ng-container >
     <button (click)="get404Error()" class="btn btn-outline-primary mr-3">Test 404 error</button>
+    <button (click)="getValidationErros()" class="btn btn-outline-primary mr-3">Test validation error</button>
+
+    <div class="row mt-5" *ngIf="validationErrors.length > 0">
+        <ul class="text-danger">
+            <li *ngFor="let error of validationErrors">
+                {{error}}
+            </li>
+        </ul>
+    </div>
 </ng-container>

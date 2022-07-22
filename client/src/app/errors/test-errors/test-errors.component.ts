@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestErrorsComponent implements OnInit {
   baseUrl = "https://localhost:7116/api/"
+  validationErrors: string[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -26,12 +27,24 @@ export class TestErrorsComponent implements OnInit {
   }
 
   getServerError() {
-    this.http.get("https://localhost:7116/api/Buggy/server-error").subscribe({
+    this.http.get(this.baseUrl + "Buggy/server-error").subscribe({
       next: resp => {
         console.log(resp)
       },
       error: e => {
         console.log(e)
+      }
+    })
+  }
+
+  getValidationErros() {
+    this.http.post(this.baseUrl + "account/register", {}).subscribe({
+      next: resp => {
+        console.log(resp)
+      },
+      error: e => {
+        console.log(e)
+        this.validationErrors = e;
       }
     })
   }
