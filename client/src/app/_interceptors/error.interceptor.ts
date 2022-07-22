@@ -29,11 +29,11 @@ export class ErrorInterceptor implements HttpInterceptor {
                 }
                 throw modalStateErrors.flat();
               } else {
-                this.toastr.error(error.statusText, error.Status);
+                this.toastr.error(error.error, error.Status);
               }
               break;
             case 401:
-              this.toastr.error(error.statusText, error.Status);
+              this.toastr.error(error.error, error.Status);
               break;
             case 404:
               this.router.navigateByUrl('/not-found');
@@ -49,7 +49,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           }
         }
 
-        return throwError(() => new Error(error))
+        return throwError(() => new Error(error.error));
       })
     )
   }
