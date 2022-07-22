@@ -19,7 +19,6 @@ namespace API.Controllers
         }
 
         [AllowAnonymous]
-        //default get method
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers() 
         {
@@ -30,7 +29,7 @@ namespace API.Controllers
                 {
                     new AppUser()
                     {
-                        Id = 228,
+                        Id = 1,
                         UserName = "Soullaft"
                     }
                 };
@@ -39,7 +38,6 @@ namespace API.Controllers
         }
 
         [Authorize]
-        //api/users/id
         [HttpGet("{id}")]
         public async Task<ActionResult<AppUser>> GetUser(int id) => await context.Users.FindAsync(id);
     }
