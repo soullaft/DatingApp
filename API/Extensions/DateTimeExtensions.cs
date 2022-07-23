@@ -2,6 +2,11 @@
 {
     public static class DateTimeExtensions
     {
+        /// <summary>
+        /// Calculate age between <see cref="DateTime.Now"/> and date of birth
+        /// </summary>
+        /// <param name="dateOfBirth"></param>
+        /// <returns></returns>
         public static int CalculateAge(this DateTime dateOfBirth)
         {
             var today = DateTime.Today;
