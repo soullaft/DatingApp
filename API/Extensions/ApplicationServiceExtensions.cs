@@ -22,6 +22,7 @@ namespace API.Extensions
             #region DI
             
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IUserRepository, UserRepository>();
             
             #endregion
             
