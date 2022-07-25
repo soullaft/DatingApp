@@ -3,6 +3,8 @@ using API.Interfaces;
 using API.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
+using AutoMapper;
+using API.Helpers;
 
 namespace API.Extensions
 {
@@ -23,9 +25,10 @@ namespace API.Extensions
             
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserRepository, UserRepository>();
-            
+            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+
             #endregion
-            
+
             //make all http request to redirect to https protocol
             services.AddHttpsRedirection(options =>
             {
