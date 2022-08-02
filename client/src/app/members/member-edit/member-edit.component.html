@@ -5,6 +5,7 @@
     <div class="col-8">
         <div class="alert alert-info" *ngIf="editForm.dirty">
             <strong>Information: </strong> You have made changes. Any unsaved changes will be lost
+            <button form="editForm" class="btn btn-success btn-block" [disabled]="!editForm.dirty">Save changes</button>
         </div>
     </div>
     <div class="col-4">
@@ -31,9 +32,6 @@
                 </div>
             </div>
             <div class="card-footer">
-                <div class="btn-group d-flex">
-                    <button form="editForm" class="btn btn-success btn-block" [disabled]="!editForm.dirty">Save changes</button>
-                </div>
             </div>
         </div>
     </div>
