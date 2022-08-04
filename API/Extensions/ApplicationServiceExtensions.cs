@@ -21,6 +21,8 @@ namespace API.Extensions
                 options.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
             });
 
+            services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
+
             #region DI
             
             services.AddScoped<ITokenService, TokenService>();
