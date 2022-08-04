@@ -6,7 +6,7 @@ using Microsoft.Extensions.Options;
 
 namespace API.Services
 {
-    public class PhotoService : IPhotoServiceCloudinary
+    public class PhotoService : IPhotoService
     {
         private readonly Cloudinary _cloudinary;
 

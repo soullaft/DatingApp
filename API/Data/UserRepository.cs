@@ -37,7 +37,7 @@ namespace API.Data
                 .SingleOrDefaultAsync();
         }
 
-        public async Task<AppUser> GetUserByNameAsync(string userName) => await _dataContext.Users.SingleOrDefaultAsync(user => user.UserName == userName);
+        public async Task<AppUser> GetUserByNameAsync(string userName) => await _dataContext.Users.Include(p => p.Photos).SingleOrDefaultAsync(user => user.UserName == userName);
 
         public async Task<bool> SaveAllAsync() => await _dataContext.SaveChangesAsync() > 0;
 
