@@ -1,10 +1,12 @@
 ﻿using API.DTOs;
 using API.Entities;
 using API.Extensions;
+using API.Extensions.DataAnnotaions;
 using API.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 
 namespace API.Controllers
@@ -26,6 +28,10 @@ namespace API.Controllers
             _photoService = photoService;
         }
 
+        /// <summary>
+        /// Get all users
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers() 
         {
@@ -34,9 +40,19 @@ namespace API.Controllers
             return Ok(users);
         }
 
+        /// <summary>
+        /// Get user by userName
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
         [HttpGet("{username}")]
         public async Task<ActionResult<MemberDto>> GetUser(string userName) => await _userRepository.GetMemberAsync(userName);
 
+        /// <summary>
+        /// Update user to memberUpdateDto <see cref="MemberUpdateDto"/>
+        /// </summary>
+        /// <param name="memberUpdateDto"></param>
+        /// <returns></returns>
         [HttpPut]
         public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
         {
@@ -51,11 +67,16 @@ namespace API.Controllers
             return BadRequest("Failed to update user");
         }
 
+        /// <summary>
+        /// Add photo to current user
+        /// </summary>
+        /// <param name="formFile">file</param>
+        /// <returns></returns>
         [HttpPost("add-photo")]
-        public async Task<ActionResult<PhotoDto>> AddPhoto(IFormFile formFile)
+        public async Task<ActionResult<PhotoDto>> AddPhoto([AllowedExtensions] IFormFile formFile)
         {
             var user = await _userRepository.GetUserByNameAsync(User.GetUserName());
-
+            
             var result = await _photoService.AddPhotoAsync(formFile);
 
             if (result.Error != null) return BadRequest(result.Error.Message);
@@ -66,6 +87,7 @@ namespace API.Controllers
                 PublicId = result.PublicId
             };
 
+            //if we have 0 photos for user then we should make this added photo as main
             if(user.Photos.Count == 0)
             {
                 photo.IsMain = true;
