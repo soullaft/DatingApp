@@ -70,14 +70,14 @@ namespace API.Controllers
         /// <summary>
         /// Add photo to current user
         /// </summary>
-        /// <param name="formFile">file</param>
+        /// <param name="file">file</param>
         /// <returns></returns>
         [HttpPost("add-photo")]
-        public async Task<ActionResult<PhotoDto>> AddPhoto([AllowedExtensions] IFormFile formFile)
+        public async Task<ActionResult<PhotoDto>> AddPhoto([AllowedExtensions] IFormFile file)
         {
             var user = await _userRepository.GetUserByNameAsync(User.GetUserName());
             
-            var result = await _photoService.AddPhotoAsync(formFile);
+            var result = await _photoService.AddPhotoAsync(file);
 
             if (result.Error != null) return BadRequest(result.Error.Message);
 
