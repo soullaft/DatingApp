@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AbstractControl, AbstractControlOptions, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, AbstractControlOptions, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/_services/account.service';
 
@@ -14,7 +14,8 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
   constructor(private accountService: AccountService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.initializeForm()
@@ -23,10 +24,10 @@ export class RegisterComponent implements OnInit {
   //todo: add configure of password length from api.
 
   initializeForm() {
-    this.registerForm = new FormGroup({
-      username: new FormControl('', Validators.required),
-      password: new FormControl('', [Validators.minLength(4), Validators.maxLength(12), Validators.required]),
-      confirmPassword: new FormControl('', [Validators.required, this.matchValues('password')])
+    this.registerForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', [Validators.minLength(4), Validators.maxLength(12), Validators.required]],
+      confirmPassword: ['', [Validators.required, this.matchValues('password')]]
     })
   }
 
