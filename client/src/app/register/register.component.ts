@@ -20,6 +20,8 @@ export class RegisterComponent implements OnInit {
     this.initializeForm()
   }
 
+  //todo: add configure of password length from api.
+
   initializeForm() {
     this.registerForm = new FormGroup({
       username: new FormControl('', Validators.required),
