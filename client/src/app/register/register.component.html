@@ -16,14 +16,12 @@
 
     <app-text-input [formControl]="$any(registerForm.controls['knownAs'])" [label]='"Known As"'></app-text-input>
 
-    <app-text-input [formControl]="$any(registerForm.controls['dateOfBirth'])" [label]='"Date Of Birth"'></app-text-input>
+    <app-date-input [formControl]="$any(registerForm.controls['dateOfBirth'])" [maxDate]="maxDate" [label]='"Date Of Birth"'></app-date-input>
 
     <app-text-input [formControl]="$any(registerForm.controls['city'])" [label]='"City"'></app-text-input>
 
     <app-text-input [formControl]="$any(registerForm.controls['country'])" [label]='"Country"'></app-text-input>
 
-    <app-text-input [formControl]="$any(registerForm.controls['username'])" [label]='"Username"'></app-text-input>
-    
     <app-text-input [formControl]="$any(registerForm.controls['password'])"
     [label]='"Password"' [type]='"password"'></app-text-input>
     
