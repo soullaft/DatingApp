@@ -1,5 +1,8 @@
 ﻿namespace API.Helpers
 {
+    /// <summary>
+    /// User parametres for viewing <see cref="PagedList{T}"/>
+    /// </summary>
     public class UserParams
     {
         private const int MAX_PAGE_SIZE = 50;
