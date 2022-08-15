@@ -1,5 +1,6 @@
 ﻿using API.DTOs;
 using API.Entities;
+using API.Helpers;
 
 namespace API.Interfaces
 {
@@ -28,7 +29,7 @@ namespace API.Interfaces
         /// Get all <see cref="IEnumerable{MemberDto}"/>
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<MemberDto>> GetAllMembersAsync();
+        Task<PagedList<MemberDto>> GetAllMembersAsync(UserParams userParams);
 
         /// <summary>
         /// Get <see cref="MemberDto"/>

@@ -10,7 +10,12 @@ namespace API.Extensions
         {
             if(paginationHeader is null) throw new ArgumentNullException(nameof(paginationHeader));
 
-            response.Headers.Add("Pagination", JsonSerializer.Serialize(paginationHeader));
+            var options = new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
+
+            response.Headers.Add("Pagination", JsonSerializer.Serialize(paginationHeader, options));
             response.Headers.Add("Access-Control-Expose-Headers", "Pagination");
         }
     }
