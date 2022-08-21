@@ -10,6 +10,10 @@
 
         public int PageNumber { get; set; } = 1;
 
+        public string? CurrentUsername { get; set; }
+
+        public string? Gender { get; set; }
+
         public int PageSize
         {
             get { return _pageSize; }
