@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary" style="padding-top: 5px; padding-bottom: 5px;">
     <div class="container">
-            <a class="navbar-brand" routerLink="/" routerLinkActive="active">Kuchinder</a>
+            <a class="navbar-brand" routerLink="/" routerLinkActive="active">Dating App</a>
               <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <ng-container *ngIf="accountService.currentUser$ | async">
                   <li class="nav-item">
@@ -21,7 +21,7 @@
               <div class="btn-group" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
                 <img src="{{ user.photoUrl || './assets/Sample_User_Icon.png' }}" alt="{{ user.username }}">
                 <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
-                        aria-controls="dropdown-basic">Welcome {{user.username | titlecase}}<span class="caret"></span>
+                        aria-controls="dropdown-basic">Welcome {{user.knownAs | titlecase}}<span class="caret"></span>
                 </button>
                 <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
                     role="menu">
