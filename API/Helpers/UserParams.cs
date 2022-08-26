@@ -20,6 +20,8 @@
 
         public int MaxAge { get; set; } = MAX_AGE;
 
+        public string OrderBy { get; set; } = "lastActive";
+
         public int PageSize
         {
             get { return _pageSize; }
