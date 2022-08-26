@@ -24,7 +24,8 @@ namespace API.Extensions
             services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
 
             #region DI
-            
+
+            services.AddScoped<LogUserActivity>();
             services.AddScoped<IPhotoService, PhotoService>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserRepository, UserRepository>();
