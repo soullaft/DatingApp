@@ -1,3 +1,37 @@
+<div class="text-center mt-3">
+    <h2>Your matches - {{ pagination?.totalItems }} found</h2>
+</div>
+
+
+    <form #form="ngForm" (ngSubmit)="loadMembers()" autocomplete="off">
+        <div class="row align-items-center g-3 mb-4">
+            <div class="col-auto">
+                <label class="col-form-label">Age from:</label>
+            </div>
+            <div class="col-auto">
+                <input type="number" class="form-control" style="width: 70px;" name="minAge" placeholder="Age to" [(ngModel)]="userParams.minAge">
+            </div>
+            <div class="col-auto">
+                <label class="col-form-label">Age to:</label>
+            </div>
+            <div class="col-auto">
+                <input type="number" class="form-control" style="width: 70px;" name="maxAge" placeholder="Age to" [(ngModel)]="userParams.maxAge">
+            </div>
+            <div class="col-auto">
+                <label class="col-form-label">Gender:</label>
+            </div>
+            <div class="col-auto">
+                <select name="gender" style="width: 130px;" [(ngModel)]="userParams.gender" class="form-control ml-1">
+                    <option *ngFor="let gender of genderList" [value]="gender.value">{{ gender.display }}</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Apply Filters</button>
+                <button (click)="resetFilters()" type="submit" class="btn btn-info" style="margin-left: 5px;">Reset Filters</button>
+            </div>
+        </div>
+    </form>
+
 <div class="row">
     <div *ngFor="let member of members" class="col-2">
         <app-member-card [member]="member"></app-member-card>
