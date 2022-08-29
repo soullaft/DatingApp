@@ -9,7 +9,7 @@ namespace API.Extensions.DataAnnotaions
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = false)]
     public class AllowedExtensionsAttribute : ValidationAttribute
     {
-        private string? _extensions;
+        private string? _extensions = String.Empty;
         private const string DEFAULT_EXTENSTIONS = "png,jpg,jpeg";
 
         /// <summary>
