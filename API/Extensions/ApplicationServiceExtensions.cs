@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Net;
 using AutoMapper;
 using API.Helpers;
+using API.Filters;
 
 namespace API.Extensions
 {

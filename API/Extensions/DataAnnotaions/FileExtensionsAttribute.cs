@@ -58,14 +58,12 @@ namespace API.Extensions.DataAnnotaions
             }
 
             var extension = Path.GetExtension(file.FileName).Replace(".","").ToUpperInvariant();
-            //if (!_extensions.Split(',').Contains(extension.ToLower()))
-            //{
-            //    return false;
-            //}
+            if (!_extensions.Split(',').Contains(extension.ToLower()))
+            {
+                return true;
+            }
 
-            var kek = ExtensionsNormalized.Split(',').Contains(extension);
-
-            return true;
+            return false;
         }
 
         /// <summary>
