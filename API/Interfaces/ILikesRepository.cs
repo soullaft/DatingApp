@@ -7,7 +7,7 @@ namespace API.Interfaces
     {
         Task<UserLike> GetUserLikeAsync(int sourceId, int likedUserId);
 
-        Task<UserLike> GetUserWithLikesAsync(int userId);
+        Task<AppUser> GetUserWithLikesAsync(int userId);
 
         Task<IEnumerable<LikeDto>> GetUserLikesAsync(string predicate, int userId);
     }
