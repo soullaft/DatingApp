@@ -76,6 +76,14 @@ export class MembersService {
     )
   }
 
+  addLike(userName: String) {
+    return this.http.post(this.baseUrl + 'likes/' + userName, {});
+  }
+
+  getLikes(predicate: String) {
+    this.http.get(this.baseUrl + 'likes?=' + predicate);
+  }
+
   setMainPhoto(photoId: number) {
     return this.http.put(this.baseUrl + 'users/set-main-photo/' + photoId, {});
   }
