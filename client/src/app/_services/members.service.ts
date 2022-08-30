@@ -81,7 +81,7 @@ export class MembersService {
   }
 
   getLikes(predicate: String) {
-    this.http.get(this.baseUrl + 'likes?=' + predicate);
+    return this.http.get<Partial<Member[]>>(this.baseUrl + 'likes?predicate=' + predicate);
   }
 
   setMainPhoto(photoId: number) {
