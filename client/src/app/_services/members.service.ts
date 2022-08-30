@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, of, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { LikeParams } from '../_models/likeParams';
 import { Member } from '../_models/member';
 import { PaginatedResult } from '../_models/pagination';
 import { User } from '../_models/user';
@@ -17,11 +18,13 @@ export class MembersService {
   memberCache = new Map();
   user: User;
   userParams: UserParams;
+  likeParams: LikeParams;
 
   constructor(private http: HttpClient, private accountService: AccountService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
       this.user = user;
       this.userParams = new UserParams(user);
+      this.likeParams = new LikeParams();
     })
    }
 
@@ -36,6 +39,14 @@ export class MembersService {
    resetUserParams(){
     this.userParams = new UserParams(this.user);
     return this.userParams;
+   }
+
+   getLikeParams() {
+    return this.likeParams;
+   }
+
+   setLikeParams(params: LikeParams) {
+    this.likeParams = params;
    }
 
   getMembers(userParams: UserParams) {
@@ -80,8 +91,10 @@ export class MembersService {
     return this.http.post(this.baseUrl + 'likes/' + userName, {});
   }
 
-  getLikes(predicate: String) {
-    return this.http.get<Partial<Member[]>>(this.baseUrl + 'likes?predicate=' + predicate);
+  getLikes(likeParams: LikeParams) {
+    let params = this.getPaginationHeaders(likeParams.pageNumber, likeParams.pageSize);
+    params = params.append('predicate', likeParams.predicate);
+    return this.getPaginatedResult<Partial<Member[]>>(this.baseUrl + 'likes', params);
   }
 
   setMainPhoto(photoId: number) {
