@@ -15,5 +15,15 @@
         public int RecipientUsername { get; set; }
 
         public AppUser? Recipient { get; set; }
+
+        public string? Content { get; set; }
+
+        public DateTime? DateRead { get; set; }
+
+        public DateTime? MessageSent { get; set; } = DateTime.Now;
+
+        public bool SenderDeleted { get; set; }
+
+        public bool RecipientDeleted { get; set; }
     }
 }
