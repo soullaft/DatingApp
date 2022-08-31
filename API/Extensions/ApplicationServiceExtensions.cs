@@ -3,7 +3,6 @@ using API.Interfaces;
 using API.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
-using AutoMapper;
 using API.Helpers;
 using API.Filters;
 
@@ -28,6 +27,7 @@ namespace API.Extensions
 
             services.AddScoped<LogUserActivity>();
             services.AddScoped<IPhotoService, PhotoService>();
+            services.AddScoped<IMessageRepository, MessageRepository>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ILikesRepository, LikesRepository>();
