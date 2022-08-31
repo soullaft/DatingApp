@@ -12,7 +12,7 @@ namespace API.Interfaces
 
         Task<Message> GetMessageAsync(int id);
 
-        Task<PagedList<MessageDto>> GetMessagesForUserAsync();
+        Task<PagedList<MessageDto>> GetMessagesForUserAsync(MessageParams messageParams);
 
         Task<IEnumerable<MessageDto>> GetMessageThreadAsync(int currentUserId, int recipientId);
 

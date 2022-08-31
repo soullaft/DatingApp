@@ -44,13 +44,7 @@ namespace API.Controllers
 
             var users = await _userRepository.GetAllMembersAsync(userParams);
 
-            Response.AddPaginationHeader(new PaginationHeader()
-            {
-                CurrentPage = users.CurrentPage,
-                ItemsPerPage = users.PageSize,
-                TotalItems = users.TotalCount,
-                TotalPages = users.TotalPages
-            });
+            Response.AddPaginationHeader(Generate<MemberDto>.GenerateHeaderParams(users));
 
             return Ok(users);
         }

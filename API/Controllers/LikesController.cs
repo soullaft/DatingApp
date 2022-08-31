@@ -54,13 +54,7 @@ namespace API.Controllers
             likesParams.UserId = User.GetUserId();
             var users = await _likesRepository.GetUserLikesAsync(likesParams);
 
-            Response.AddPaginationHeader(new PaginationHeader
-            {
-                CurrentPage = users.CurrentPage,
-                ItemsPerPage = users.PageSize,
-                TotalItems = users.TotalCount,
-                TotalPages = users.TotalPages
-            });
+            Response.AddPaginationHeader(Generate<LikeDto>.GenerateHeaderParams(users));
 
             return Ok(users);
         }
