@@ -10,6 +10,10 @@ namespace API.Services
     {
         private readonly Cloudinary _cloudinary;
 
+        /// <summary>
+        /// Default constuctor
+        /// </summary>
+        /// <param name="config">Option config of <see cref="CloudinarySettings"/></param>
         public PhotoService(IOptions<CloudinarySettings> config)
         {
             var account = new Account(
@@ -20,6 +24,13 @@ namespace API.Services
 
             _cloudinary = new Cloudinary(account);
         }
+
+        /// <summary>
+        /// Add photo assync to a current user profile
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns>Returns <see cref="ImageUploadResult"/> of cloudinary service</returns>
+        /// <exception cref="ArgumentNullException">throws if file length was 0 </exception>
         public async Task<ImageUploadResult> AddPhotoAsync(IFormFile file)
         {
             var uploadResult = new ImageUploadResult();
@@ -39,6 +50,11 @@ namespace API.Services
             return uploadResult;
         }
 
+        /// <summary>
+        /// Delete photo async
+        /// </summary>
+        /// <param name="publicId">public id of an image</param>
+        /// <returns></returns>
         public async Task<DeletionResult> DeletePhotoAsync(string publicId)
         {
             var deleteParams = new DeletionParams(publicId);

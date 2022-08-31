@@ -5,16 +5,14 @@
     /// </summary>
     public class UserParams : PaginationParams
     {
-        private const int MIN_AGE = 18;
-        private const int MAX_AGE = 150;
 
         public string? CurrentUsername { get; set; }
 
         public string? Gender { get; set; }
 
-        public int MinAge { get; set; } = MIN_AGE;
+        public int MinAge { get; set; } = MsgConst.MIN_AGE;
 
-        public int MaxAge { get; set; } = MAX_AGE;
+        public int MaxAge { get; set; } = MsgConst.MAX_AGE;
 
         public string OrderBy { get; set; } = "lastActive";
     }

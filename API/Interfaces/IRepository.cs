@@ -4,7 +4,7 @@
     /// Represents default Repository
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IRepository<T> where T : class, new()
+    public interface IRepository<T> where T : class
     {
         /// <summary>
         /// Get entity by id

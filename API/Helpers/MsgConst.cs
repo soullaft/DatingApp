@@ -7,5 +7,7 @@
         public const string MESSAGE_UNREAD = "Unread";
         public const string MESSAGE_INBOX = "Inbox";
         public const string MESSAGE_OUTBOX = "Outbox";
+        public const int MIN_AGE = 18;
+        public const int MAX_AGE = 150;
     }
 }
