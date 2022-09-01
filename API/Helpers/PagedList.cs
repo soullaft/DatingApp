@@ -2,7 +2,7 @@
 
 namespace API.Helpers
 {
-    public class PagedList<T> : List<T>
+    public class PagedList<T> : List<T>, IPagedList
     {
         public int CurrentPage { get; set; }
 

@@ -61,7 +61,7 @@ namespace API.Controllers
 
             var messages = await _messageRepository.GetMessagesForUserAsync(messageParams);
 
-            Response.AddPaginationHeader(Generate<MessageDto>.GenerateHeaderParams(messages));
+            Response.AddPaginationHeader(Generate.GenerateHeaderParams(messages));
 
             return messages;
         }

@@ -3,9 +3,9 @@
 namespace API.Helpers
 {
     //todo: rework
-    public static class Generate<T> where T : class, new()
+    public static class Generate
     {
-        public static IPaginationHeader GenerateHeaderParams(PagedList<T> headerParams)
+        public static IPaginationHeader GenerateHeaderParams(IPagedList headerParams)
         {
             var instance = new PaginationHeader
             {
