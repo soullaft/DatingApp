@@ -1,4 +1,6 @@
-﻿    namespace API.Helpers
+﻿using API.Helpers;
+
+namespace API.Pagination.Params
 {
     /// <summary>
     /// User parametres for viewing <see cref="PagedList{T}"/>

@@ -1,4 +1,4 @@
-﻿namespace API.Helpers
+﻿namespace API.Pagination
 {
     /// <summary>
     /// Default contract for pagedList viewmodel

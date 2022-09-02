@@ -1,6 +1,6 @@
 ﻿using API.Interfaces;
 
-namespace API.Helpers
+namespace API.Pagination
 {
     public class PaginationHeader : IPaginationHeader
     {

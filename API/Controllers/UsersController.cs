@@ -4,6 +4,7 @@ using API.Extensions;
 using API.Extensions.DataAnnotaions;
 using API.Helpers;
 using API.Interfaces;
+using API.Pagination.Params;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

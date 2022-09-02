@@ -1,6 +1,7 @@
 ﻿using API.DTOs;
 using API.Entities;
-using API.Helpers;
+using API.Pagination;
+using API.Pagination.Params;
 
 namespace API.Interfaces
 {

@@ -11,9 +11,7 @@ namespace API.Data
 
         public DbSet<Message> Messages { get; set; }
         
-        public DataContext(DbContextOptions options) : base(options)
-        {
-        }
+        public DataContext(DbContextOptions options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

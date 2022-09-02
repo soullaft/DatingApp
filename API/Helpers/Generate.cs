@@ -1,4 +1,5 @@
 ﻿using API.Interfaces;
+using API.Pagination;
 
 namespace API.Helpers
 {

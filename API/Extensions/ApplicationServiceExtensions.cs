@@ -18,10 +18,10 @@ namespace API.Extensions
             //create data context depending on credentials in config file
             services.AddDbContext<DataContext>(options =>
             {
-                options.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlite(configuration.GetConnectionString(MsgConst.RESOURCE_CONNECTION_SETTINGS));
             });
 
-            services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
+            services.Configure<CloudinarySettings>(configuration.GetSection(MsgConst.RESOURCE_CLOUDINARY_SETTINGS));
 
             #region DI
 
