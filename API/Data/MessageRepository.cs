@@ -6,6 +6,7 @@ using API.Pagination;
 using API.Pagination.Params;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
 {
@@ -52,9 +53,25 @@ namespace API.Data
             return await PagedList<MessageDto>.CreateAsync(messages, messageParams.PageNumber, messageParams.PageSize);
         }
 
-        public Task<IEnumerable<MessageDto>> GetMessageThreadAsync(int currentUserId, int recipientId)
+        public async Task<IEnumerable<MessageDto>> GetMessageThreadAsync(string currentUsername, string recipientUsername)
         {
-            throw new NotImplementedException();
+            var messages = await _context.Messages
+                .Include(u => u.Sender).ThenInclude(p => p.Photos)
+                .Include(u => u.Recipient).ThenInclude(p => p.Photos)
+                .Where(m => m.Recipient.UserName == currentUsername
+                && m.Sender.UserName == recipientUsername
+                || m.Recipient.UserName == recipientUsername
+                && m.Sender.UserName == currentUsername).OrderBy(m => m.MessageSent).ToListAsync();
+
+            var unreadMesages = messages.Where(m => m.DateRead == null && m.Recipient.UserName == currentUsername).ToList();
+
+            if(unreadMesages.Any())
+            {
+                unreadMesages.ForEach(msg => msg.DateRead = DateTime.Now);
+                await SaveAllAsync();
+            }
+
+            return _mapper.Map<IEnumerable<MessageDto>>(messages);
         }
 
         public async Task<bool> SaveAllAsync() => await _context.SaveChangesAsync() > 0;
