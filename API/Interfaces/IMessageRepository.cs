@@ -37,6 +37,12 @@ namespace API.Interfaces
         /// <returns></returns>
         Task<PagedList<MessageDto>> GetMessagesForUserAsync(MessageParams messageParams);
 
+        /// <summary>
+        /// Returns thread (chat view) of messages for 2 users
+        /// </summary>
+        /// <param name="currentUsername"></param>
+        /// <param name="recipientUsername"></param>
+        /// <returns></returns>
         Task<IEnumerable<MessageDto>> GetMessageThreadAsync(string currentUsername, string recipientUsername);
 
         Task<bool> SaveAllAsync();
