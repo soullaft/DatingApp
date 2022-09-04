@@ -4,7 +4,7 @@ using API.Pagination;
 namespace API.Helpers
 {
     //todo: rework
-    public static class Generate
+    public static class GenerateHeader
     {
         public static IPaginationHeader GenerateHeaderParams(IPagedList headerParams)
         {

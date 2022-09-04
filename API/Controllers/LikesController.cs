@@ -55,7 +55,7 @@ namespace API.Controllers
             likesParams.UserId = User.GetUserId();
             var users = await _likesRepository.GetUserLikesAsync(likesParams);
 
-            Response.AddPaginationHeader(Generate.GenerateHeaderParams(users));
+            Response.AddPaginationHeader(GenerateHeader.GenerateHeaderParams(users));
 
             return Ok(users);
         }

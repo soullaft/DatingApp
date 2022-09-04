@@ -23,8 +23,6 @@ namespace API.Extensions
 
             services.Configure<CloudinarySettings>(configuration.GetSection(MsgConst.RESOURCE_CLOUDINARY_SETTINGS));
 
-            #region DI
-
             services.AddScoped<LogUserActivity>();
             services.AddScoped<IPhotoService, PhotoService>();
             services.AddScoped<IMessageRepository, MessageRepository>();
@@ -32,8 +30,6 @@ namespace API.Extensions
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ILikesRepository, LikesRepository>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
-
-            #endregion
 
             //make all http request to redirect to https protocol
             services.AddHttpsRedirection(options =>
