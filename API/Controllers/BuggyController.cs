@@ -1,4 +1,5 @@
 ﻿using API.Data;
+using API.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,8 +29,10 @@ namespace API.Controllers
         {
             var incorrectUser = _context.Users.Find(-1);
 
-            if (incorrectUser == null)
+            ThrowHelper.ThrowIfNull(incorrectUser, () =>
+            {
                 return NotFound();
+            });
 
             return Ok(incorrectUser);
         }

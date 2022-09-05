@@ -1,6 +1,7 @@
 using API.Data;
 using API.DTOs;
 using API.Entities;
+using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -69,8 +70,10 @@ namespace API.Controllers
         {
             var user = await _context.Users.Include(p => p.Photos).SingleOrDefaultAsync(user => user.UserName == loginDto.Username);
 
-            if (user == null)
+            ThrowHelper.ThrowIfNull(user, () =>
+            {
                 return BadRequest("Invalid username");
+            });
 
             using var hmac = new HMACSHA512(user.PasswordSalt);
 

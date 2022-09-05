@@ -7,13 +7,15 @@
         /// </summary>
         /// <param name="obj"></param>
         /// <exception cref="NullReferenceException"></exception>
-        public static void ThrowIfNull<T>(object obj, Func<T> func = null)
+        public static T ThrowIfNull<T>(object obj, Func<T>? func = null)
         {
             if (obj == null)
                 throw new NullReferenceException(nameof(obj));
             
-            if (func != null)
-                func();
+            if (func == null)
+                throw new NullReferenceException(nameof(func));
+
+            return func();
         }
     }
 }

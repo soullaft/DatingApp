@@ -54,7 +54,7 @@ namespace API.Data
 
         public async Task<AppUser> GetUserWithLikesAsync(int userId)
         {
-            return await _dataContext.Users.Include(u => u.LikedUsers).FirstOrDefaultAsync(u => u.Id == userId);
+            return await _dataContext.Users.Include(u => u.LikedUsers).SingleOrDefaultAsync(u => u.Id == userId);
         }
     }
 }
