@@ -16,11 +16,11 @@ namespace API.Services
         /// <param name="config">Option config of <see cref="CloudinarySettings"/></param>
         public PhotoService(IOptions<CloudinarySettings> config)
         {
+            // initialize cloudinary account from config file
             var account = new Account(
                 cloud: config.Value.CloudName,
                 apiKey: config.Value.ApiKey,
-                apiSecret: config.Value.ApiSecret
-                );
+                apiSecret: config.Value.ApiSecret);
 
             _cloudinary = new Cloudinary(account);
         }
@@ -33,21 +33,20 @@ namespace API.Services
         /// <exception cref="ArgumentNullException">throws if file length was 0 </exception>
         public async Task<ImageUploadResult> AddPhotoAsync(IFormFile file)
         {
-            var uploadResult = new ImageUploadResult();
-
             if(file.Length == 0)
                 throw new ArgumentNullException(nameof(file));
 
             using var stream = file.OpenReadStream();
+
             var uploadParams = new ImageUploadParams
             {
                 File = new FileDescription(file.FileName, stream),
-                Transformation = new Transformation().Height(500).Width(500).Crop("fill").Gravity("face")
+                Transformation = new Transformation()
+                    .Height(MsgConst.IMAGE_DEFAULT_HEIGHT).Width(MsgConst.IMAGE_DEFAULT_WIDTH)
+                    .Crop("fill").Gravity("face")
             };
 
-            uploadResult = await _cloudinary.UploadAsync(uploadParams);
-
-            return uploadResult;
+            return await _cloudinary.UploadAsync(uploadParams);
         }
 
         /// <summary>
@@ -59,9 +58,7 @@ namespace API.Services
         {
             var deleteParams = new DeletionParams(publicId);
 
-            var result = await _cloudinary.DestroyAsync(deleteParams);
-
-            return result;
+            return await _cloudinary.DestroyAsync(deleteParams);
         }
     }
 }

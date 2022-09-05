@@ -14,5 +14,8 @@
 
         public const string RESOURCE_CONNECTION_SETTINGS = "DefaultConnection";
         public const string RESOURCE_CLOUDINARY_SETTINGS = "CloudinarySettings";
+
+        public const int IMAGE_DEFAULT_HEIGHT = 500;
+        public const int IMAGE_DEFAULT_WIDTH = 500;
     }
 }
