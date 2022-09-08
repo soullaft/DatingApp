@@ -17,5 +17,8 @@
 
         public const int IMAGE_DEFAULT_HEIGHT = 500;
         public const int IMAGE_DEFAULT_WIDTH = 500;
+
+        public const string ORDER_BY_LAST_ACTIVE = "lastActive";
+        public const string ORDER_BY_LAST_CREATED = "created";
     }
 }

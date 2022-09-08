@@ -1,5 +1,6 @@
 ﻿using API.DTOs;
 using API.Entities;
+using API.Helpers;
 using API.Interfaces;
 using API.Pagination;
 using API.Pagination.Params;
@@ -37,7 +38,7 @@ namespace API.Data
 
             query = userParams.OrderBy switch
             {
-                "created" => query.OrderByDescending(u => u.Created),
+                MsgConst.ORDER_BY_LAST_CREATED => query.OrderByDescending(u => u.Created),
                 _ => query.OrderByDescending(u => u.LastActive),
             };
 

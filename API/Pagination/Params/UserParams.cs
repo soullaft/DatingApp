@@ -16,6 +16,6 @@ namespace API.Pagination.Params
 
         public int MaxAge { get; set; } = MsgConst.MAX_AGE;
 
-        public string OrderBy { get; set; } = "lastActive";
+        public string OrderBy { get; set; } = MsgConst.ORDER_BY_LAST_ACTIVE;
     }
 }
