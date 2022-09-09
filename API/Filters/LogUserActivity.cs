@@ -2,6 +2,7 @@
 using API.Extensions;
 using API.Interfaces;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Throw;
 
 namespace API.Filters
 {
@@ -22,7 +23,7 @@ namespace API.Filters
             var userId = resultContext.HttpContext.User.GetUserId();
             var repo = resultContext.HttpContext.RequestServices.GetService<IUserRepository>();
 
-            if(repo == null) throw new NullReferenceException(nameof(IUserRepository));
+            repo.ThrowIfNull();
 
             var user = await repo.GetByIdAsync(userId);
             user.LastActive = DateTime.Now;

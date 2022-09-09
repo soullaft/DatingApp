@@ -1,6 +1,7 @@
 ﻿using API.Helpers;
 using API.Interfaces;
 using System.Text.Json;
+using Throw;
 
 namespace API.Extensions
 {
@@ -17,7 +18,7 @@ namespace API.Extensions
         /// <exception cref="ArgumentNullException"></exception>
         public static void AddPaginationHeader(this HttpResponse response, IPaginationHeader paginationHeader)
         {
-            if(paginationHeader is null) throw new ArgumentNullException(nameof(paginationHeader));
+            paginationHeader.ThrowIfNull();
 
             var options = new JsonSerializerOptions
             {

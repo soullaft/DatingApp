@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
 using System.Text;
+using Throw;
 
 namespace API.Controllers
 {
@@ -70,10 +71,7 @@ namespace API.Controllers
         {
             var user = await _context.Users.Include(p => p.Photos).SingleOrDefaultAsync(user => user.UserName == loginDto.Username);
 
-            ThrowHelper.ThrowIfNull(user, () =>
-            {
-                return BadRequest("Invalid username");
-            });
+            user.ThrowIfNull();
 
             using var hmac = new HMACSHA512(user.PasswordSalt);
 

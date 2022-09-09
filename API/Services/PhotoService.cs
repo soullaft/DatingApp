@@ -3,6 +3,7 @@ using API.Interfaces;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.Extensions.Options;
+using Throw;
 
 namespace API.Services
 {
@@ -33,8 +34,7 @@ namespace API.Services
         /// <exception cref="ArgumentNullException">throws if file length was 0 </exception>
         public async Task<ImageUploadResult> AddPhotoAsync(IFormFile file)
         {
-            if(file.Length == 0)
-                throw new ArgumentNullException(nameof(file));
+            file.Length.Throw().IfEquals(0);
 
             using var stream = file.OpenReadStream();
 

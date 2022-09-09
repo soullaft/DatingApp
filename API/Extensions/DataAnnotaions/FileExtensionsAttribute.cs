@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Globalization;
+using Throw;
 
 namespace API.Extensions.DataAnnotaions
 {
@@ -52,10 +53,7 @@ namespace API.Extensions.DataAnnotaions
         {
             var file = value as IFormFile;
 
-            if (file == null)
-            {
-                throw new ArgumentException($"Incorrect type of argument. Must be IFormFile");
-            }
+            file.ThrowIfNull();
 
             var extension = Path.GetExtension(file.FileName).Replace(".","").ToUpperInvariant();
             if (!_extensions.Split(',').Contains(extension.ToLower()))

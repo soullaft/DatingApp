@@ -2,6 +2,7 @@
 using API.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Throw;
 
 namespace API.Controllers
 {
@@ -29,10 +30,7 @@ namespace API.Controllers
         {
             var incorrectUser = _context.Users.Find(-1);
 
-            ThrowHelper.ThrowIfNull(incorrectUser, () =>
-            {
-                return NotFound();
-            });
+            incorrectUser.ThrowIfNull();
 
             return Ok(incorrectUser);
         }
