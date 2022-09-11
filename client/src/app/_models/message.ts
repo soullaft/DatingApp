@@ -1,4 +1,4 @@
-interface Message {
+export interface Message {
     id: number;
     senderId: number;
     senderUsername: string;
@@ -7,6 +7,6 @@ interface Message {
     recipientUsername: string;
     recipientPhotoUrl: string;
     content: string;
-    dateRead?: any;
-    messageSend: string;
+    dateRead?: Date;
+    messageSent: Date;
 }
