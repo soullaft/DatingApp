@@ -17,7 +17,7 @@ namespace API.Controllers
     /// Represents all actions with the users
     /// </summary>
     [Authorize]
-    public class UsersController : BaseApiController
+    public sealed class UsersController : BaseApiController
     {
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;

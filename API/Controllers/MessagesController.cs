@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace API.Controllers
 {
     [Authorize]
-    public class MessagesController : BaseApiController
+    public sealed class MessagesController : BaseApiController
     {
         private readonly IUserRepository _userRepository;
         private readonly IMessageRepository _messageRepository;

@@ -15,7 +15,7 @@ namespace API.Controllers
     /// <summary>
     /// Register and login account controller
     /// </summary>
-    public class AccountController : BaseApiController
+    public sealed class AccountController : BaseApiController
     {
         private readonly DataContext _context;
         private readonly ITokenService _tokenService;
