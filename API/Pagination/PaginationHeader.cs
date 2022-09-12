@@ -2,7 +2,7 @@
 
 namespace API.Pagination
 {
-    public class PaginationHeader : IPaginationHeader
+    public sealed class PaginationHeader : IPaginationHeader
     {
         public int CurrentPage { get; set; }
 

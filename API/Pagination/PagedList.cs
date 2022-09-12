@@ -2,7 +2,7 @@
 
 namespace API.Pagination
 {
-    public class PagedList<T> : List<T>, IPagedList
+    public sealed class PagedList<T> : List<T>, IPagedList
     {
         public int CurrentPage { get; set; }
 
