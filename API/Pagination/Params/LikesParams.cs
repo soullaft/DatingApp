@@ -2,7 +2,7 @@
 
 namespace API.Pagination.Params
 {
-    public class LikesParams : PaginationParams
+    public sealed class LikesParams : PaginationParams
     {
         public int UserId { get; set; }
 

@@ -5,7 +5,7 @@ namespace API.Pagination.Params
     /// <summary>
     /// User parametres for viewing <see cref="PagedList{T}"/>
     /// </summary>
-    public class UserParams : PaginationParams
+    public sealed class UserParams : PaginationParams
     {
 
         public string? CurrentUsername { get; set; }

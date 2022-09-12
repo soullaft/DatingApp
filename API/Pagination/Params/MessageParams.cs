@@ -3,7 +3,7 @@ using API.Pagination;
 
 namespace API.Pagination.Params
 {
-    public class MessageParams : PaginationParams
+    public sealed class MessageParams : PaginationParams
     {
         public string? Username { get; set; }
 
