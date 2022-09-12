@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
 {
-    public class LikesRepository : ILikesRepository
+    public sealed class LikesRepository : ILikesRepository
     {
         private readonly DataContext _dataContext;
         public LikesRepository(DataContext dataContext)

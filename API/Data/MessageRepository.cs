@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
 {
-    public class MessageRepository : IMessageRepository
+    public sealed class MessageRepository : IMessageRepository
     {
         private readonly DataContext _context;
         private readonly IMapper _mapper;
