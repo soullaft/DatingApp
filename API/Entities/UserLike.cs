@@ -1,6 +1,6 @@
 ﻿namespace API.Entities
 {
-    public class UserLike
+    public sealed class UserLike
     {
         public AppUser? SourceUser { get;set; }
 

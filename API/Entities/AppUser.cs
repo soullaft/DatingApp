@@ -5,7 +5,7 @@ namespace API.Entities
     /// <summary>
     /// Application user
     /// </summary>
-    public class AppUser
+    public sealed class AppUser
     {
         public int Id { get; set; }
 

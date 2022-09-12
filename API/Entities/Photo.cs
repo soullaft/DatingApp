@@ -4,7 +4,7 @@ namespace API.Entities
 {
     //fully defining relationship
     [Table("Photos")]
-    public class Photo
+    public sealed class Photo
     {
         public int Id { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿namespace API.DTOs
 {
-    public class MemberDto
+    public sealed class MemberDto
     {
         public int Id { get; set; }
 

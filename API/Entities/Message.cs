@@ -1,6 +1,6 @@
 ﻿namespace API.Entities
 {
-    public class Message
+    public sealed class Message
     {
         public int Id { get; set; }
 

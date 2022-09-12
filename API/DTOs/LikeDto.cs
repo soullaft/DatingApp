@@ -1,6 +1,6 @@
 ﻿namespace API.DTOs
 {
-    public class LikeDto
+    public sealed class LikeDto
     {
         public int Id { get; set; }
         

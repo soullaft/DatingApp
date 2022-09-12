@@ -1,6 +1,6 @@
 ﻿namespace API.DTOs
 {
-    public class MemberUpdateDto
+    public sealed class MemberUpdateDto
     {
         public string? Introduction { get; set; }
 

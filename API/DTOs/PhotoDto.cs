@@ -1,6 +1,6 @@
 ﻿namespace API.DTOs
 {
-    public class PhotoDto
+    public sealed class PhotoDto
     {
         public int Id { get; set; }
 

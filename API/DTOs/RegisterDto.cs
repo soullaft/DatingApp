@@ -5,7 +5,7 @@ namespace API.DTOs
     /// <summary>
     /// Represents register entity of the user
     /// </summary>
-    public class RegisterDto
+    public sealed class RegisterDto
     {
         [Required]
         [StringLength(30)]
