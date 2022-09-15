@@ -1,4 +1,6 @@
-﻿namespace API.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace API.Entities
 {
     public sealed class Message
     {
@@ -6,16 +8,19 @@
 
         public int SenderId { get; set; }
 
+        [StringLength(20)]
         public string? SenderUsername { get; set; }
 
         public AppUser? Sender { get; set; }
 
         public int RecipientId { get; set; }
 
+        [StringLength(20)]
         public string? RecipientUsername { get; set; }
 
         public AppUser? Recipient { get; set; }
 
+        [StringLength(300)]
         public string? Content { get; set; }
 
         public DateTime? DateRead { get; set; }

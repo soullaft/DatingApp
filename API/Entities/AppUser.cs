@@ -1,4 +1,5 @@
 ﻿using API.Extensions;
+using System.ComponentModel.DataAnnotations;
 
 namespace API.Entities
 {
@@ -9,6 +10,7 @@ namespace API.Entities
     {
         public int Id { get; set; }
 
+        [StringLength(20)]
         public string? UserName { get;set; }
 
         public byte[]? PasswordHash { get; set; }
@@ -17,22 +19,29 @@ namespace API.Entities
 
         public DateTime DateOfBirth { get; set; }
 
+        [StringLength(20)]
         public string? KnownAs { get; set; }
 
         public DateTime Created { get; set; } = DateTime.Now;
 
         public DateTime LastActive { get; set; } = DateTime.Now;
 
+        [StringLength(20)]
         public string? Gender { get; set; }
 
+        [StringLength(200)]
         public string? Introduction { get; set; }
 
+        [StringLength(200)]
         public string? LookingFor { get; set; }
-
+        
+        [StringLength(200)]
         public string? Interests { get; set; }
 
+        [StringLength(30)]
         public string? City { get; set; }
 
+        [StringLength(30)]
         public string? Country { get; set; }
 
         public ICollection<Photo>? Photos { get; set; }
