@@ -1,6 +1,6 @@
 ﻿namespace API.Errors
 {
-    public class ApiException
+    public sealed class ApiException
     {
         public ApiException(int statusCode, string message = null, string details = null)
         {

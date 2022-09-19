@@ -8,7 +8,7 @@ namespace API.Extensions.DataAnnotaions
     /// Validation attribute to assert an <see cref="IFormFile">IFormFile</see> property, field or parameter has a specific extention.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = false)]
-    public class AllowedExtensionsAttribute : ValidationAttribute
+    public sealed class AllowedExtensionsAttribute : ValidationAttribute
     {
         private string? _extensions = String.Empty;
         private const string DEFAULT_EXTENSTIONS = "png,jpg,jpeg";
