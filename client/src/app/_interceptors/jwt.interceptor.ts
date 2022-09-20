@@ -9,6 +9,7 @@ import { Observable, take } from 'rxjs';
 import { AccountService } from '../_services/account.service';
 import { User } from '../_models/user';
 
+//inject to every request jwt token
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
 

@@ -9,6 +9,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
+//handles all client error
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
@@ -16,6 +17,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
+      //catch error and depends on error code show correct message
       catchError(error => {
         if (error) {
           switch (error.status) {

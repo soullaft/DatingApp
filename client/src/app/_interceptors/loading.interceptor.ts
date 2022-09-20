@@ -8,6 +8,7 @@ import {
 import { delay, finalize, Observable } from 'rxjs';
 import { BusyService } from '../_services/busy.service';
 
+//handles for simulation of loading members
 @Injectable()
 export class LoadingInterceptor implements HttpInterceptor {
 
